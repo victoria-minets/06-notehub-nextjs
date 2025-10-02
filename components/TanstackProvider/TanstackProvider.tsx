@@ -6,7 +6,7 @@ import { useState } from 'react';
 interface Props {
   children: React.ReactNode;
 }
-const TanstackProvider = ({ children }: Props) => {
+const TanStackProvider = ({ children }: Props) => {
   const [queryClient] = useState(new QueryClient());
 
   return (
@@ -17,4 +17,4 @@ const TanstackProvider = ({ children }: Props) => {
   );
 };
 
-export default TanstackProvider;
+export default TanStackProvider;
