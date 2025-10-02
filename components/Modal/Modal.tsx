@@ -10,10 +10,9 @@ interface ModalProps {
 }
 
 export default function Modal({ children, onClose }: ModalProps) {
-  // Держимо посилання на контейнер модалки
   const [modalRoot, setModalRoot] = useState<HTMLElement | null>(null);
 
-  // Отримуємо його лише на клієнті
+  // Отримуємо контейнер лише на клієнті
   useEffect(() => {
     setModalRoot(document.getElementById('modal-root'));
   }, []);
@@ -27,7 +26,15 @@ export default function Modal({ children, onClose }: ModalProps) {
     return () => window.removeEventListener('keydown', handleEsc);
   }, [onClose]);
 
-  // Якщо контейнер ще не готовий — нічого не рендеримо
+  // Блокування скролу фону
+  useEffect(() => {
+    const originalStyle = window.getComputedStyle(document.body).overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = originalStyle;
+    };
+  }, []);
+
   if (!modalRoot) return null;
 
   return createPortal(

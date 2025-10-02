@@ -27,6 +27,7 @@ export default function NoteDetailsClient({ noteId }: Props) {
     queryKey: ['note', id],
     queryFn: () => fetchNoteById(id!),
     enabled: !!id, // запит виконується тільки якщо id визначено
+    refetchOnMount: false, // уникаємо дублюючого запиту після SSR-prefetch
   });
 
   if (!id) return <p>Note ID is missing.</p>;
