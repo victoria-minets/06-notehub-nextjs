@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 
-import TanstackProvider from '@/components/TanStackProvider/TanStackProvider';
+import TanstackProvider from '@/components/Lily/TanStackProvider';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 
